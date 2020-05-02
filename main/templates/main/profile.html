@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<head>
+    <title>{{request.user.username}}</title>
+</head>
+
+<div class="container">
+    {% if post_exists %}
+        <p class = "notes"> Blogs You have written </p>
+        <br><br>
+    {% else %}
+        <br><br><br><br><br><br>
+        <p class = "notes">Hmmm....You haven't written a blog yet..</p>
+    {% endif %}
+  <div class="card-columns">
+      {% for post in posts %}
+    <div class="card bg-danger">
+      <div class="card-body text-center">
+        <p class="title">{{post.title}}</p>
+        <p style = color:yellow;>Topic:{{post.topic.topic_title}}</p>
+        {{post.intro|safe}}
+        <br>
+        <button class="button button2">
+        <a href = "{% url 'main:view_post' post.slug %}">Read Full Blog</a>
+        </button>
+        <button class="button button2">
+        <a href = "{% url 'main:update_post' post.slug %}">Edit This Blog</a>
+        <button class="button button2">
+        <a href = "{% url 'main:delete_post_confirmation' post.slug %}">Delete This Blog</a>
+        </button>
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock%}

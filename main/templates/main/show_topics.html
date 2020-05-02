@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<head>
+    <title>Topics</title>
+</head>
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <p class = "message">{{message}}</p>
+        {% endfor %}
+    {% endif %}
+    <br>
+    {% if no_topics %}
+        <br><br><br><br>
+        <p class = "notes">You are not following any topics</p>
+        <p class = "butt">
+        <button class = "button button2">
+            <a href = "{% url 'main:discover_topics' %}">Discover Topics</a>
+        </button>
+        </p>
+    {% endif %}
+  <div class="card-columns">
+      {% for topic in topics %}
+    <div class="card bg-danger">
+      <div class="card-body text-center">
+        <p class="title"><a href = "{% url 'main:show_topic_posts' topic.slug %}">{{topic.topic_title}}</a></p>
+        <button class="button button2">
+        <a href = "{% url 'main:unfollow_topic' topic.slug %}">Unfollow</a></button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock%}
+</body>
+
+
+
+
+
+
+
+{% for topic in topics %}
+    <p>{{topic.topic_title}}</p><br>
+    {% if topic in request.user.userfollows_set.all %}
+        <p>followed</p>
+    {% endif %}
+{% endfor %}

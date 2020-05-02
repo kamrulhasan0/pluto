@@ -1,0 +1,37 @@
+<!Doctype html>
+<html>
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'user/login_style.css' %}">
+</head>
+<body>
+{% if messages %}
+    {% for message in messages %}
+        <p id = "message">{{message}}</p>
+    {% endfor %}
+{% endif %}
+
+<br><br><br><br><br><br><br>
+
+<form method = 'Post'>
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        <p class = "fields">{{ field.label_tag }} <br>
+        {{ field }}</p>
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+{% endfor %}
+    <p><button type='submit' class="button button2">Login</button></p>
+</form>
+<p>Need An Account?
+<button class = "button button2"><a href = "{% url 'user:signup' %}">Signup</a>
+</button>
+</p>
+</body>
+</html>

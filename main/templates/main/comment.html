@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% block content%}
+<head>
+    <title>Responses</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/form.css' %}">
+</head>
+
+<div class = "container">
+    <p class = "butt">
+    <button class="button button2">
+        <a href = "{% url 'main:view_post' post.slug %}">Back To Blog</a>
+    </button>
+    </p>
+    <form method = "post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            <p class = "fields">{{ field.label_tag }} <br>
+            {{ field }}</p>
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <p class = "butt"><button type='submit' class="button button2">Add Response</button>
+        </p>
+</div>
+{% endblock %}

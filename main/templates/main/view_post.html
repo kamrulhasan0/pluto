@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<head>
+    <title>{{post.title}}</title>
+</head>
+<body>
+  <div class="container">
+    <p class = "notes">{{post.title}}</p>
+    <br>
+    <p style = color:#9400D3; >Author: {{post.author}}</p>
+    <p style = color:#FF6347;>{{post.num_comments}} Responses</p>
+    <p style = color:#FF6347;>{{post.num_claps}} Claps</p>
+    <p style = color:#800000>{{post.date}}</p>
+    <br>
+    <br>
+    {{post.content|safe}}
+    <br><br>
+    <p class = "butt">
+    <button class="button button2">
+    <a href = "{% url 'main:show_comments' post.slug %}">Show Responses</a></button>
+    {% if clapped %}
+        <button class="button button2">
+            <a href = "{% url 'main:un_clap' post.slug %}">Clapped</a></button>
+    {% else %}
+        <button class="button button2">
+            <a href = "{% url 'main:clap' post.slug %}">Clap</a></button>
+    {% endif %}        
+    </p>
+    </div>
+</body>
+{% endblock %}

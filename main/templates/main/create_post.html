@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+<!Doctype html>
+<html>
+{% block content %}
+<head>
+    <title>Write a blog</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/form.css' %}">
+</head>
+<body>
+<div class = "container">
+<form method = 'Post' enctype = 'multipart/form-data'>
+    {% csrf_token %}
+    {{form.media}}
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        <p class = "fields">{{ field.label_tag }} <br>
+        {{ field }}</p>
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+{% endfor %}
+
+    <p class = "butt"><button type='submit' class="button button2">Create</button>
+    </p>
+</form>
+</body>
+{% endblock %}
+</html>

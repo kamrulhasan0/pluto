@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Out</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'user/login_style.css' %}">
+
+</head>
+
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <p id = "message">{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+    <br><br><br><br><br><br><br><br>
+    <p class = "info">You are logged out!!!</p>
+    <p class = "butt">
+    <button class = "button button2">
+    <a href = "{% url 'user:Login' %}">Login</a>
+    </button>
+    </p>
+</body>
+</html>

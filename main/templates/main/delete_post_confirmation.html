@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<head>
+    <title>Confirm deletion</title>
+</head>
+<body>
+  <div class="container">
+    <br><br><br>
+    <p class = "notes">Are you sure you want to delete the blog   "{{post.title}}"?</p>
+    <p class = "butt">
+    <button class="button button2">
+    <a href = "{% url 'main:delete_post' slug %}">Yes</a>
+    </button>
+    <button class = "button button2">
+    <a href = "{% url 'main:profile' %}">No</a>
+    </button>
+    </p>
+  </div>
+</body>
+
+{% endblock %}

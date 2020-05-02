@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html>
+{% block content %}
+<head>
+    <title>Pluto</title>
+</head>
+
+<body>
+<div class = "container">
+{% if not following_topics %}
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <p class = "notes">You are not following any topic</p>
+    <br>
+    <p class = "butt">
+    <button class="button button2">
+    <a href = "{% url 'main:discover_topics' %}">Discover Topics</a>
+    </button>
+    </p>
+{% else %}
+<div class="card-columns">
+    {% for post in posts %}
+  <div class="card bg-danger">
+    <div class="card-body text-center">
+      <p class="title">{{post.title}}</p>
+      <p style = color:yellow; >Author: {{post.author}}</p>
+      <p style="color:green">{{post.topic.topic_title}}</p>
+      <p style = color:#800000>{{post.date}}</p>
+      {{post.intro|safe}}
+      <br>
+      <br>
+      <button class="button button2">
+      <a href = "{% url 'main:view_post' post.slug %}">Read Full Blog</a>
+      </button>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+</div>
+{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<head>
+    <title>Update Post</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/form.css' %}">
+<body>
+<div class="container">
+    <p class = "notes";>Update Blog</p>
+    <br>
+    <form method = 'Post' enctype = 'multipart/form-data'>
+        {% csrf_token %}
+        {{form.media}}
+        {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            <p class = "fields">{{ field.label_tag }} <br>
+            {{ field }}</p>
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+        <p class = "submit"><button type='submit' class="button button2">Update</button></p>
+    </form>
+</div>
+{% endblock %}
+</body>

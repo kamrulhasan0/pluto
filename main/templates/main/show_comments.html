@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{% block content%}
+<head>
+    <title>Responses</title>
+</head>
+
+<div class = "container">
+    <p class = "butt">
+    <button class="button button2">
+    <a href = "{% url 'main:comment' post.slug %}">Write A Responses
+    </a></button>
+    <button class="button button2">
+        <a href = "{% url 'main:view_post' post.slug %}">Back To Blog</a>
+    </button>
+    </p>
+    {% if no_comments %}
+        <p class = "notes">This Blog has no response yet</p>
+    {% else %}
+        {% for comment in comments %}
+            <div style = border-style:solid;border-color:blue;>
+            <p style = color:#800080;>{{comment.comment_by.username }}<br>
+            {{comment.date}}
+            <br></p>
+            <p style = color:#663399;>{{comment.comment}}</p>
+            <br><br>
+            {% if comment.comment_by == request.user %}
+                <button class="button button2">
+                    <a href = "{% url 'main:delete_comment' comment.slug post.slug %}">Delete This Responses
+                </a></button>
+            {% endif %}
+            </div>
+            <br>
+            <br>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

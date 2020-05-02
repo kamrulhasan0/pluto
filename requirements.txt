@@ -1,3 +1,8 @@
 Django==2.2
 django-ckeditor==5.8.0
 
+
+
+
+mkvirtualenv --python=/usr/bin/python3.7 pluto-virtualenv
+

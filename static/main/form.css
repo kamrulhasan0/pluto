@@ -1,0 +1,33 @@
+body {
+        background-image: url('images/ex.jpg');
+    }
+
+p.fields {
+    color: #483D8B;
+    font-size: 20px;
+    text-align: center;
+    /*font-weight: bold; */
+}
+
+ul {
+    color:red;
+    text-align: center;
+}
+
+p#message{
+    color:green;
+    font-size: 30;
+    text-align: center;
+}
+
+
+
+p{
+    color: red;
+    text-align: center;
+}
+
+p.notes{
+    color:green;
+    text-align: center;
+}
